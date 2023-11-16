@@ -1,0 +1,46 @@
+package Threading.produceConsumerSemaphore;
+
+import java.util.Queue;
+import java.util.concurrent.Semaphore;
+
+public class Producer implements Runnable{
+    private Queue<Shirt> store;
+    private int maxSizeOfStore;
+    private String name;
+    private Semaphore semaphoreForProducer;
+    private Semaphore semaphoreForConsumer;
+
+
+//    public Producer(Queue<Shirt> store, int maxSizeOfStore, String name) {
+//        this.store = store;
+//        this.maxSizeOfStore = maxSizeOfStore;
+//        this.name = name;
+//    }
+
+    public Producer(Queue<Shirt> store, int maxSizeOfStore, String name, Semaphore semaphoreForProducer, Semaphore semaphoreForConsumer) {
+        this.store = store;
+        this.maxSizeOfStore = maxSizeOfStore;
+        this.name = name;
+        this.semaphoreForProducer=semaphoreForProducer;
+        this.semaphoreForConsumer=semaphoreForConsumer;
+    }
+
+    @Override
+    public void run() {
+        while (true){
+
+            try {
+                semaphoreForProducer.acquire(); //decrementing producer
+                store.add(new Shirt());
+                System.out.println(name +" producer. left shirts count = "+ store.size());
+                semaphoreForConsumer.release(); //incrementing consumer
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
+
+        }
+    }
+}
