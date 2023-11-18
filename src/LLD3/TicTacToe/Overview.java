@@ -100,7 +100,7 @@ public class Overview {
                }
     }
 
-    2.Better approach:-O(n^2)
+    2.Better approach:-O(n)
     checkWinner(Board board, Player lastMovePlayer){
     1.for loop -> row
     2.for loop -> col
