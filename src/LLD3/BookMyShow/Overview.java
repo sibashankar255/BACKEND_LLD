@@ -174,6 +174,52 @@ public class Overview {
      *
      *
      *
+     * how to handle concurrency ?
+     *
+     * select the product/seat -> summary/confirmation -> pay
+     *
+     *
+     * approach 1:-
+     * isolation level: serializable
+     * 1.take a lock on all the rows that user is trying to book
+     * 2.check the status if seats are available
+     * 3.payment page -> pay, go back
+     * 4.release the lock
+     *
+     * lock was there for the duration entire transaction
+     *
+     * approach 2:-
+     * introduce a new show seat status as blocked and use this instead of DB lock
+     * we will not keep the transaction running till the end of payment
+     *
+     * 1.check the seat status . if the status is available
+     * 2.take a lock over the seat id's
+     * only 1 transaction will be able to acquire the lock
+     * 3.double check locking:-
+     * check the status again if it is available
+     * 4.change the seat status to be blocked
+     * 5.release the lock
+     * 6.payment -> pay -> blocked -> booked
+     *           -> go back -> blocked -> available
+     *
+     *
+     *  T1 acquire the lock
+     *  again check the status
+     *  change the status to blocked
+     *  T1 releases the lock
+     *  go the payment page(T1)
+     *  if success blocked -> booked
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
      *
      *
      *

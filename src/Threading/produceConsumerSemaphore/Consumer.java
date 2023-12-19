@@ -35,9 +35,6 @@ public class Consumer implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
-
-
         }
     }
 }

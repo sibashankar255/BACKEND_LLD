@@ -1,4 +1,4 @@
-package DesignPattern.singleton.singlethreaded;
+package DesignPattern.singleton.Lazy;
 
 public class Client {
 

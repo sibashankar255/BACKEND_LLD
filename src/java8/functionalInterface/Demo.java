@@ -12,6 +12,7 @@ public class Demo {
 
 
 
+
         //2.way use anonymous classes
         Foo foo1 = new Foo() {
             @Override

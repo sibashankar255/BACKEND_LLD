@@ -179,6 +179,138 @@ public class Overview {
      *
      * 1.complete schema design
      *
+     *  1. ParkingLot
+     *  List<ParkingFloor>
+     *  List<Gate></>
+     *  int size
+     *
+     *  2. ParkingFloor
+     *  List<ParkingSpot></>
+     *  floor_no
+     *
+     *  3. ParkingSpot
+     *  no.
+     *  vehicleType
+     *  spotStatus
+     *  floor_id
+     *
+     *  4.Gate
+     *  gateNo
+     *  operator
+     *  status
+     *  gateType
+     *
+     *  5.Ticket
+     *  spot
+     *  entryTime
+     *  vehicle
+     *  gate
+     *  operator
+     *
+     *
+     *
+     *  tables:-
+     *  Parking_lot
+     *  Parking_floor
+     *  gates
+     *  Parking_spot
+     *  vehicles
+     *  operators
+     *  tickets
+     *  bills
+     *  payments
+     *
+     *
+     *
+     *
+     *
+     *  representing Inheritances:-
+     *  Parking Spot -> ev Parking Spot
+     *
+     *  parking spot : id , vehicle, floor
+     *  electronics parking spot : parking spot id, meter_amount
+     *
+     *
+     * Enums:-
+     *
+     * ParkingSpotType{
+     *     2W, 4W
+     * }
+     *
+     *
+     *
+     * tables:-
+     *
+     * 1.parking_lots
+     * id
+     * size
+     *
+     * 2.parking_floors
+     * id
+     * floor_number
+     *
+     * 3.Gates
+     * id
+     * gate_number
+     *
+     * 4.parking_spot
+     * id
+     * floor_number
+     * spot_number
+     *
+     * 5.vehicles
+     * id
+     * number
+     * owner_name
+     *
+     * 6.operator
+     * id
+     * name
+     * employee_id
+     *
+     * 7.tickets
+     * id
+     * entry_time
+     * number
+     *
+     * 8.bills
+     * id
+     * exit_time
+     * bill_amount
+     *
+     * 9.payments
+     * id
+     * time
+     * amount
+     * reference_no
+     *
+     * relations b/w other tables:-
+     *
+     * parking_lot <-> gates -> 1:M
+     *
+     * parking_lot <-> floor -> 1:M
+     *
+     * parking_lot <-> status -> M:1
+     *
+     * parking_floor <-> slots -> 1:M
+     *
+     * gate <-> GateType -> M:1
+     *
+     * gate <-> operator -> 1:1
+     *
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
      *
      *
      *
