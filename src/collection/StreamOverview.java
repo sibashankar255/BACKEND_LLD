@@ -79,12 +79,10 @@ public class StreamOverview {
         skip(long n): Skips the first n elements in the stream and returns a new stream with the remaining elements.
         takeWhile(Predicate<T> predicate): Returns the longest prefix of elements that match the given predicate.
         dropWhile(Predicate<T> predicate): Returns a stream that discards the longest prefix of elements that match the given predicate.
-        mapToInt(ToIntFunction<T> mapper): Maps elements to int values, useful for primitive streams.
+        mapToInt(ToIntFunction<T> mapper): Maps  elements to int values, useful for primitive streams.
         mapToLong(ToLongFunction<T> mapper): Maps elements to long values, useful for primitive streams.
         mapToDouble(ToDoubleFunction<T> mapper): Maps elements to double values, useful for primitive streams.
         boxed(): Converts a primitive stream (e.g., IntStream, LongStream, DoubleStream) to a regular object stream.
-
-
 
         Different terminal operations of the stream:
 
@@ -119,51 +117,89 @@ public class StreamOverview {
 
 
 
+
+
+
          */
 
-        Stream<String> nameStream = Stream.of("hello", "everybody","how", "are", "you", "doing");
-        Stream<String> filterStream = nameStream.filter((String name) -> name.length()>2);
-        List<String> filteredNameList  = filterStream.collect(Collectors.toList());
+//        Stream<String> nameStream = Stream.of("hello", "everybody","how", "are", "you", "doing");
+//        Stream<String> filterStream = nameStream.filter((String name) -> name.length()>2);
+//        List<String> filteredNameList  = filterStream.collect(Collectors.toList());
+//
+//
+//        Stream<String> mapStream = nameStream.map((String name) -> name.toUpperCase());
+//
+//        List<List<String>> sentenceList = Arrays.asList(
+//                Arrays.asList("I", "love", "java"),
+//                Arrays.asList("concept", "are","clear"),
+//                Arrays.asList("its", "very","easy")
+//        );
+//
+//        Stream<String> wordStream1 = sentenceList.stream().flatMap((List<String> sentence) -> sentence.stream());
+//
+//        Stream<String> wordStream2 = sentenceList.stream().
+//                flatMap((List<String> sentence) -> sentence.stream().map((String value) -> value.toUpperCase()));
+//
+//
+//
+//        Integer[] arr = {1,5,2,7,4,4,2,0,9};
+//
+//        Stream<Integer> arrDistinct = Arrays.stream(arr).distinct();
+//
+//        Stream<Integer> arrSorted = Arrays.stream(arr).sorted();
+
+        int[] arr = {1,1,2,1};
+        System.out.println(find(4,1,arr));
 
 
-        Stream<String> mapStream = nameStream.map((String name) -> name.toUpperCase());
-
-        List<List<String>> sentenceList = Arrays.asList(
-                Arrays.asList("I", "love", "java"),
-                Arrays.asList("concept", "are","clear"),
-                Arrays.asList("its", "very","easy")
-        );
-
-        Stream<String> wordStream1 = sentenceList.stream().flatMap((List<String> sentence) -> sentence.stream());
-
-        Stream<String> wordStream2 = sentenceList.stream().
-                flatMap((List<String> sentence) -> sentence.stream().map((String value) -> value.toUpperCase()));
+    }
 
 
+    static int find(int n, int K, int[] array){
+//        int before=0;
+//        int after=0;
+//        for(int i=0;i<n;i++){
+//            if(arr[i]==k){
+//                before++;
+//            }
+//        }
+//
+//        for(int i=0;i<n;i++){
+//            if(arr[i]==k){
+//                before--;
+//            }else{
+//                after++;
+//            }
+//            if(before==after){
+//                return i-1;
+//            }
+//        }
+//        return -1;
+        int occurrencesBefore = 0;
+        int occurrencesAfter = 0;
 
-        Integer[] arr = {1,5,2,7,4,4,2,0,9};
+        // Count occurrences of K before the current index
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == K) {
+                occurrencesBefore++;
+            }
+        }
 
-        Stream<Integer> arrDistinct = Arrays.stream(arr).distinct();
+        // Iterate through each index to find the required index
+        for (int i = 0; i < array.length; i++) {
+            // Update occurrencesAfter and check if it's equal to occurrencesBefore
+            if (array[i] == K) {
+                occurrencesBefore--;
+            }
+            if (occurrencesBefore == occurrencesAfter) {
+                return i;
+            }
+            if (array[i] == K) {
+                occurrencesAfter++;
+            }
+        }
 
-        Stream<Integer> arrSorted = Arrays.stream(arr).sorted();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // If no such index is found
+        return -1;
     }
 }

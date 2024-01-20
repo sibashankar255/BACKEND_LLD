@@ -1,5 +1,7 @@
 package DesignPattern.Builder;
 
+import java.util.Objects;
+
 public class Student {
     String name;
     String email;
@@ -25,4 +27,15 @@ public class Student {
         return new Helper();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student student)) return false;
+        return age == student.age && Double.compare(student.psp, psp) == 0 && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(phoneNo, student.phoneNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, age, phoneNo, psp);
+    }
 }

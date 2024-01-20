@@ -154,4 +154,26 @@ public class Overview {
      *
      *
      */
+
+    public static void main(String[] args) {
+        String input = "siba shankar sahu";
+        System.out.println(reverseWords(input));
+    }
+
+    public static String reverseWords(String input) {
+        // Split the input string into words
+        String[] words = input.split("\\s+");
+
+        // Reverse the order of words
+        StringBuilder reversedBuilder = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; i--) {
+            reversedBuilder.append(words[i]);
+            if (i > 0) {
+                reversedBuilder.append(" ");
+            }
+        }
+
+        return reversedBuilder.toString();
+    }
 }
+
