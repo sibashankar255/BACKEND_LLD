@@ -12,7 +12,8 @@ public class StudentClient {
         SchoolStudent schoolStudent = new SchoolStudent("shankar", "sahu", "xyz@gmail.com");
 
         students.add(collegeStudent);
-//        students.add(schoolStudent); // it won't add because it is not compatible with the interface so need to
+//        students.add(schoolStudent); // it won't add because it is not compatible
+//        with the interface so need to
         // create a StudentAdapter class and implement the Student interface in that
         //
         students.add(new StudentAdapter(schoolStudent));
