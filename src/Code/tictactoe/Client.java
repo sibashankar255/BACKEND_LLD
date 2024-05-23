@@ -1,8 +1,31 @@
 package Code.tictactoe;
 
+import Code.tictactoe.controller.GameController;
+import Code.tictactoe.model.Game;
+import Code.tictactoe.model.Symbol;
+import Code.tictactoe.model.types.GameState;
+
 public class Client {
+    public static void main(String[] args) {
 
+        //user's perspective
+        GameController gameController = new GameController();
+        Game game = gameController.startGame();
 
+        while (!game.getGameState().equals(GameState.IN_PROGRESS)){
+            //display board
+            //find out player with next turn
+            //ask player to make a move
+            gameController.printBoard();
+            gameController.makeMove(game);
+        }
+        if (game.getGameState().equals(GameState.DRAW)){
+            System.out.println("Game is draw");
+        }
+        if (game.getGameState().equals(GameState.END)){
+            System.out.println("game is won by player: "+ gameController.getWinner().getName());
+        }
+    }
 
     // Undo:-
     /**

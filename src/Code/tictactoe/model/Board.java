@@ -6,6 +6,9 @@ public class Board {
     List<List<Cell>> cells;
     Integer size;
 
+    public Board(int size) {
+    }
+
     public List<List<Cell>> getCells() {
         return cells;
     }
